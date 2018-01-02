@@ -79,7 +79,11 @@ namespace c_1
             return sortedArray;
         }
 
-
+        /// <summary>
+        /// 插入排序
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
         public int[] InsertSort(int[] array)
         {
             for (int i = 1; i < array.Length; i++)
