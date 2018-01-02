@@ -80,7 +80,8 @@ namespace c_1
         }
 
         /// <summary>
-        /// 插入排序
+        /// InsertSort
+        /// <remarks>插入排序</remarks>
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
