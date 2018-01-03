@@ -68,6 +68,28 @@ namespace c_1.Execrise
                                         result.Add(word);
                                     }
                                     break;
+                                case (int)DirectionEnum.Left:
+                                    if (i >= wordLengthLimit - 1)
+                                    {
+                                        string word = "";
+                                        for (int m = 0; m < wordLengthLimit; m++)
+                                        {
+                                            word += CheckBoard[i-m, j];
+                                        }
+                                        result.Add(word);
+                                    }
+                                    break;
+                                case (int)DirectionEnum.Right:
+                                    if (i >= wordLengthLimit - 1)
+                                    {
+                                        string word = "";
+                                        for (int m = 0; m < wordLengthLimit; m++)
+                                        {
+                                            word += CheckBoard[i + m, j];
+                                        }
+                                        result.Add(word);
+                                    }
+                                    break;
                                 case (int)DirectionEnum.LeftDown:
                                     break;
                                 case (int)DirectionEnum.RightDown:
@@ -99,9 +121,11 @@ namespace c_1.Execrise
     {
         Up = 0,
         Down = 1,
-        LeftDown = 2,
-        RightDown = 3,
-        LeftUp = 4,
-        RightUp = 5,
+        Left = 2,
+        Right = 3,
+        LeftDown = 4,
+        RightDown = 5,
+        LeftUp = 6,
+        RightUp = 7,
     }
 }
