@@ -12,7 +12,7 @@ namespace ConsoleApplication
     {
         static void Main(string[] args)
         {
-            execrise_1.EffectTestAndDraw(5);
+            execrise_1.EffectTestAndDraw(5, 1000);
         }
     }
 }
