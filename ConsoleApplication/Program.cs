@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using c_1;
+using c_1.Execrise;
 
 namespace ConsoleApplication
 {
@@ -11,7 +12,7 @@ namespace ConsoleApplication
     {
         static void Main(string[] args)
         {
-            chapter_1_3.PrintOut(519);
+            execrise_1.EffectTestAndDraw(5);
         }
     }
 }
