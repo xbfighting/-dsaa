@@ -47,6 +47,7 @@
     <Compile Include="chapter_1_1.cs" />
     <Compile Include="chapter_1_3.cs" />
     <Compile Include="Execrise\execrise_1.cs" />
+    <Compile Include="Execrise\execrise_2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
