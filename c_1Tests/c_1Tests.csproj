@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="chapter_1_1Tests.cs" />
     <Compile Include="Execrise\execrise_1Tests.cs" />
+    <Compile Include="Execrise\execrise_2Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
