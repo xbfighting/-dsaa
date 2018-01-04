@@ -22,84 +22,129 @@ namespace c_1.Execrise
             this.Dictionary = dict;
         }
 
+        public string[] GetDictionary()
+        {
+            return Dictionary;
+        }
+
         public void InitCheckBoard(string[,] cb)
         {
             this.CheckBoard = cb;
         }
 
-        public List<string> FindLetterCombination()
+        public Dictionary<string, string> FindLetter()
         {
-            List<string> result = new List<string>();
+            var letterCombinationDict = new Dictionary<string, string>();
             int cloumnCount = this.CheckBoard.GetLength(0);
             int rowCount = this.CheckBoard.GetLength(1);
-            int directionCount = 6; // 寻词方向 6个
+            int directionCount = 8; // 寻词方向 6个
 
-            for (int i = 0; i < cloumnCount; i++)
+            for (int cloumnIndex = 0; cloumnIndex < cloumnCount; cloumnIndex++)
             {
-                for (int j = 0; j < rowCount; j++)
+                for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
                 {
-                    for (int k = 0; k < directionCount; k++)
+                    for (int direction = 0; direction < directionCount; direction++)
                     {
-                        for (int l = 0; l < WordLength.Length; l++)
+                        for (int wl = 0; wl < WordLength.Length; wl++)
                         {
-                            int wordLengthLimit = WordLength[l];
+                            int wordLengthLimit = WordLength[wl];
+                            string word = "";
+                            string indexStr = "";
 
-                            switch (k)
+                            switch (direction)
                             {
-                                case (int)DirectionEnum.Up:
-                                    if (j >= wordLengthLimit - 1)
+                                case (int) DirectionEnum.Up:
+                                    if (rowIndex >= wordLengthLimit - 1)
                                     {
-                                        string word = "";
                                         for (int m = 0; m < wordLengthLimit; m++)
                                         {
-                                            word += CheckBoard[i, j - m];
+                                            word += CheckBoard[cloumnIndex, rowIndex - m];
+                                            indexStr += $"[{cloumnIndex},{rowIndex - m}]";
                                         }
-                                        result.Add(word);
                                     }
                                     break;
-                                case (int)DirectionEnum.Down:
-                                    if ((rowCount - j) >= wordLengthLimit)
+                                case (int) DirectionEnum.Down:
+                                    if ((rowCount - rowIndex) >= wordLengthLimit)
                                     {
-                                        string word = "";
                                         for (int m = 0; m < wordLengthLimit; m++)
                                         {
-                                            word += CheckBoard[i, j + m];
+                                            word += CheckBoard[cloumnIndex, rowIndex + m];
+                                            indexStr += $"[{cloumnIndex},{rowIndex + m}]";
                                         }
-                                        result.Add(word);
                                     }
                                     break;
-                                case (int)DirectionEnum.Left:
-                                    if (i >= wordLengthLimit - 1)
+                                case (int) DirectionEnum.Left:
+                                    if (cloumnIndex >= wordLengthLimit - 1)
                                     {
-                                        string word = "";
                                         for (int m = 0; m < wordLengthLimit; m++)
                                         {
-                                            word += CheckBoard[i - m, j];
+                                            word += CheckBoard[cloumnIndex - m, rowIndex];
+                                            indexStr += $"[{cloumnIndex - m},{rowIndex}]";
                                         }
-                                        result.Add(word);
                                     }
                                     break;
-                                case (int)DirectionEnum.Right:
-                                    if ((cloumnCount - i) >= wordLengthLimit)
+                                case (int) DirectionEnum.Right:
+                                    if ((cloumnCount - cloumnIndex) >= wordLengthLimit)
                                     {
-                                        string word = "";
                                         for (int m = 0; m < wordLengthLimit; m++)
                                         {
-                                            word += CheckBoard[i + m, j];
+                                            word += CheckBoard[cloumnIndex + m, rowIndex];
+                                            indexStr += $"[{cloumnIndex + m},{rowIndex}]";
                                         }
-                                        result.Add(word);
                                     }
                                     break;
-                                case (int)DirectionEnum.LeftDown:
+                                case (int) DirectionEnum.LeftDown:
+                                    if ((cloumnIndex + 1 >= wordLengthLimit) && (rowCount - rowIndex) >= wordLengthLimit)
+                                    {
+                                        for (int m = 0; m < wordLengthLimit; m++)
+                                        {
+                                            word += CheckBoard[cloumnIndex - m, rowIndex + m];
+                                            indexStr += $"[{cloumnIndex - m},{rowIndex + m}]";
+                                        }
+                                    }
                                     break;
-                                case (int)DirectionEnum.RightDown:
+                                case (int) DirectionEnum.RightDown:
+                                    if ((cloumnCount - cloumnIndex) >= wordLengthLimit &&
+                                        (rowCount - rowIndex >= wordLengthLimit))
+                                    {
+                                        for (int m = 0; m < wordLengthLimit; m++)
+                                        {
+                                            word += CheckBoard[cloumnIndex + m, rowIndex + m];
+                                            indexStr += $"[{cloumnIndex + m},{rowIndex + m}]";
+                                        }
+                                    }
                                     break;
-                                case (int)DirectionEnum.LeftUp:
+                                case (int) DirectionEnum.LeftUp:
+                                    if ((cloumnIndex + 1 >= wordLengthLimit) && (rowIndex + 1 >= wordLengthLimit))
+                                    {
+                                        for (int m = 0; m < wordLengthLimit; m++)
+                                        {
+                                            word += CheckBoard[cloumnIndex - m, rowIndex - m];
+                                            indexStr += $"[{cloumnIndex - m},{rowIndex - m}]";
+                                        }
+                                    }
                                     break;
-                                case (int)DirectionEnum.RightUp:
+                                case (int) DirectionEnum.RightUp:
+                                    if ((cloumnCount - cloumnIndex) >= wordLengthLimit &&
+                                        (rowIndex + 1) >= wordLengthLimit)
+                                    {
+                                        for (int m = 0; m < wordLengthLimit; m++)
+                                        {
+                                            word += CheckBoard[cloumnIndex + m, rowIndex - m];
+                                            indexStr += $"[{cloumnIndex + m},{rowIndex - m}]";
+                                        }
+                                    }
                                     break;
                                 default:
                                     break;
+                            }
+
+                            if (!string.IsNullOrWhiteSpace(word))
+                            {
+                                if (this.Dictionary.Contains(word))
+                                {
+                                    letterCombinationDict.Add(indexStr, word);
+                                }
                             }
                         }
                     }
@@ -107,10 +152,8 @@ namespace c_1.Execrise
             }
             
 
-            return result;
+            return letterCombinationDict;
         }
-
-        //private string[] FindLetterCombination
     }
 
     /// <summary>
