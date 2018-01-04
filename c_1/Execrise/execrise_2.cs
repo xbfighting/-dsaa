@@ -30,13 +30,13 @@ namespace c_1.Execrise
         public List<string> FindLetterCombination()
         {
             List<string> result = new List<string>();
-            int cloumn = this.CheckBoard.GetLength(0);
-            int row = this.CheckBoard.GetLength(1);
+            int cloumnCount = this.CheckBoard.GetLength(0);
+            int rowCount = this.CheckBoard.GetLength(1);
             int directionCount = 6; // 寻词方向 6个
 
-            for (int i = 0; i < cloumn; i++)
+            for (int i = 0; i < cloumnCount; i++)
             {
-                for (int j = 0; j < row; j++)
+                for (int j = 0; j < rowCount; j++)
                 {
                     for (int k = 0; k < directionCount; k++)
                     {
@@ -47,7 +47,7 @@ namespace c_1.Execrise
                             switch (k)
                             {
                                 case (int)DirectionEnum.Up:
-                                    if (j >= wordLengthLimit-1)
+                                    if (j >= wordLengthLimit - 1)
                                     {
                                         string word = "";
                                         for (int m = 0; m < wordLengthLimit; m++)
@@ -58,7 +58,7 @@ namespace c_1.Execrise
                                     }
                                     break;
                                 case (int)DirectionEnum.Down:
-                                    if (j >= wordLengthLimit - 1)
+                                    if ((rowCount - j) >= wordLengthLimit)
                                     {
                                         string word = "";
                                         for (int m = 0; m < wordLengthLimit; m++)
@@ -74,13 +74,13 @@ namespace c_1.Execrise
                                         string word = "";
                                         for (int m = 0; m < wordLengthLimit; m++)
                                         {
-                                            word += CheckBoard[i-m, j];
+                                            word += CheckBoard[i - m, j];
                                         }
                                         result.Add(word);
                                     }
                                     break;
                                 case (int)DirectionEnum.Right:
-                                    if (i >= wordLengthLimit - 1)
+                                    if ((cloumnCount - i) >= wordLengthLimit)
                                     {
                                         string word = "";
                                         for (int m = 0; m < wordLengthLimit; m++)
