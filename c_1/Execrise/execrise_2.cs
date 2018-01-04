@@ -11,9 +11,9 @@ namespace c_1.Execrise
     /// </summary>
     public class execrise_2
     {
-        public string[] Dictionary { get; set; }
+        private string[] Dictionary { get; set; }
 
-        public string[,] CheckBoard { get; set; }
+        private string[,] CheckBoard { get; set; }
 
         public static int[] WordLength = {3, 4, 5};
 
